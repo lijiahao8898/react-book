@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>React</title>
+
+    <meta name="description" content="Slides: react">
+    <meta name="author" content="@lijiahao8898">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.css">
+    <link rel="stylesheet" href="css/theme/wx.css" id="theme">
+
+    <!-- Code syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- Printing and PDF exports -->
+    <script>
+        var link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = window.location.search.match(/print-pdf/gi) ? 'css/print/pdf.css' : 'css/print/paper.css';
+        document.getElementsByTagName('head')[0].appendChild(link);
+    </script>
+
+    <style lang="css" type="text/css">
+        .App-logo {
+            animation: App-logo-spin infinite 20s linear;
+            height: 160px;
+        }
+    </style>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+
+        <section style="margin-top:2%" data-markdown>
+            <script type="text/template">
+                <svg class="App-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 841.9 595.3">
+                    <g fill="#61DAFB">
+                        <path d="M666.3 296.5c0-32.5-40.7-63.3-103.1-82.4 14.4-63.6 8-114.2-20.2-130.4-6.5-3.8-14.1-5.6-22.4-5.6v22.3c4.6 0 8.3.9 11.4 2.6 13.6 7.8 19.5 37.5 14.9 75.7-1.1 9.4-2.9 19.3-5.1 29.4-19.6-4.8-41-8.5-63.5-10.9-13.5-18.5-27.5-35.3-41.6-50 32.6-30.3 63.2-46.9 84-46.9V78c-27.5 0-63.5 19.6-99.9 53.6-36.4-33.8-72.4-53.2-99.9-53.2v22.3c20.7 0 51.4 16.5 84 46.6-14 14.7-28 31.4-41.3 49.9-22.6 2.4-44 6.1-63.6 11-2.3-10-4-19.7-5.2-29-4.7-38.2 1.1-67.9 14.6-75.8 3-1.8 6.9-2.6 11.5-2.6V78.5c-8.4 0-16 1.8-22.6 5.6-28.1 16.2-34.4 66.7-19.9 130.1-62.2 19.2-102.7 49.9-102.7 82.3 0 32.5 40.7 63.3 103.1 82.4-14.4 63.6-8 114.2 20.2 130.4 6.5 3.8 14.1 5.6 22.5 5.6 27.5 0 63.5-19.6 99.9-53.6 36.4 33.8 72.4 53.2 99.9 53.2 8.4 0 16-1.8 22.6-5.6 28.1-16.2 34.4-66.7 19.9-130.1 62-19.1 102.5-49.9 102.5-82.3zm-130.2-66.7c-3.7 12.9-8.3 26.2-13.5 39.5-4.1-8-8.4-16-13.1-24-4.6-8-9.5-15.8-14.4-23.4 14.2 2.1 27.9 4.7 41 7.9zm-45.8 106.5c-7.8 13.5-15.8 26.3-24.1 38.2-14.9 1.3-30 2-45.2 2-15.1 0-30.2-.7-45-1.9-8.3-11.9-16.4-24.6-24.2-38-7.6-13.1-14.5-26.4-20.8-39.8 6.2-13.4 13.2-26.8 20.7-39.9 7.8-13.5 15.8-26.3 24.1-38.2 14.9-1.3 30-2 45.2-2 15.1 0 30.2.7 45 1.9 8.3 11.9 16.4 24.6 24.2 38 7.6 13.1 14.5 26.4 20.8 39.8-6.3 13.4-13.2 26.8-20.7 39.9zm32.3-13c5.4 13.4 10 26.8 13.8 39.8-13.1 3.2-26.9 5.9-41.2 8 4.9-7.7 9.8-15.6 14.4-23.7 4.6-8 8.9-16.1 13-24.1zM421.2 430c-9.3-9.6-18.6-20.3-27.8-32 9 .4 18.2.7 27.5.7 9.4 0 18.7-.2 27.8-.7-9 11.7-18.3 22.4-27.5 32zm-74.4-58.9c-14.2-2.1-27.9-4.7-41-7.9 3.7-12.9 8.3-26.2 13.5-39.5 4.1 8 8.4 16 13.1 24 4.7 8 9.5 15.8 14.4 23.4zM420.7 163c9.3 9.6 18.6 20.3 27.8 32-9-.4-18.2-.7-27.5-.7-9.4 0-18.7.2-27.8.7 9-11.7 18.3-22.4 27.5-32zm-74 58.9c-4.9 7.7-9.8 15.6-14.4 23.7-4.6 8-8.9 16-13 24-5.4-13.4-10-26.8-13.8-39.8 13.1-3.1 26.9-5.8 41.2-7.9zm-90.5 125.2c-35.4-15.1-58.3-34.9-58.3-50.6 0-15.7 22.9-35.6 58.3-50.6 8.6-3.7 18-7 27.7-10.1 5.7 19.6 13.2 40 22.5 60.9-9.2 20.8-16.6 41.1-22.2 60.6-9.9-3.1-19.3-6.5-28-10.2zM310 490c-13.6-7.8-19.5-37.5-14.9-75.7 1.1-9.4 2.9-19.3 5.1-29.4 19.6 4.8 41 8.5 63.5 10.9 13.5 18.5 27.5 35.3 41.6 50-32.6 30.3-63.2 46.9-84 46.9-4.5-.1-8.3-1-11.3-2.7zm237.2-76.2c4.7 38.2-1.1 67.9-14.6 75.8-3 1.8-6.9 2.6-11.5 2.6-20.7 0-51.4-16.5-84-46.6 14-14.7 28-31.4 41.3-49.9 22.6-2.4 44-6.1 63.6-11 2.3 10.1 4.1 19.8 5.2 29.1zm38.5-66.7c-8.6 3.7-18 7-27.7 10.1-5.7-19.6-13.2-40-22.5-60.9 9.2-20.8 16.6-41.1 22.2-60.6 9.9 3.1 19.3 6.5 28.1 10.2 35.4 15.1 58.3 34.9 58.3 50.6-.1 15.7-23 35.6-58.4 50.6zM320.8 78.4z"/>
+                        <circle cx="420.9" cy="296.5" r="45.7"/>
+                        <path d="M520.5 78.1z"/>
+                    </g>
+                </svg>
+                # react
+
+                <small>
+                    <a href="javascript:;">by - 李家豪</a>
+                </small>
+
+                <!--<iframe frameborder="0" scrolling="0" width="90px" height="22px" src="https://ghbtns.com/github-btn.html?user=huxpro&amp;repo=js-module-7day&amp;type=star&amp;count=true">-->
+                <!--</iframe>-->
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## 目标
+
+                基于 React + Redux + React-router + Ant-design 的后台系统
+
+                * React
+                    - react 核心库
+                    - react-dom 提供DOM相关的功能
+                * Redux
+
+                * React-router
+
+                * Ant-design
+            </script>
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                * 渲染（jsx）
+                * 生命周期
+                * 组件
+                  - 组件间的值传递(props)
+                * state
+                * 事件处理
+            </script>
+        </section>
+
+        <section data-markdown>
+            ## 渲染（jsx）
+        </section>
+
+        <section data-markdown>
+            <script type="text/template">
+                ## what is JSX?
+
+                <div>`jsx` 是 `javascript` 的一种扩展语法，也可以说是 `javascript` 的语法糖</div>
+                <!-- .element: class="fragment" -->
+
+                <div>HTML不使用引号直接和javascript混写</div>
+                <!-- .element: class="fragment" -->
+
+                <div>ReactDOM.render()</div>
+                <!-- .element: class="fragment" -->
+
+                ```javascript
+                const list = ['Alice', 'Emily', 'Kate']
+                ReactDOM.render(
+                    <div>
+                        {list.map((name, index) => {
+                        return (
+                        <div key={index}>Hello, {name}!</div>
+                        )
+                        })}
+                    </div>,
+                    document.getElementById('root')
+                )
+                ```
+                <!-- .element: class="fragment" -->
+            </script>
+        </section>
+
+        <!-- 生命周期 -->
+        <section>
+            <section data-markdown>
+                ## 生命周期
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 生命周期
+
+                    * componentWillMount
+                     - 插入真实DOM之前
+                    <!-- .element: class="fragment" -->
+
+                    * componentDidMount
+                     - 已经生成了真实的DOM
+                    <!-- .element: class="fragment" -->
+
+                    * componentWillReceiveProps
+                     - 接收到一个新的 prop (更新后)时被调用
+                    <!-- .element: class="fragment" -->
+                     - 这个方法在初始化render时不会被调用
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    * shouldComponentUpdate
+                     - 返回一个布尔值
+                    <!-- .element: class="fragment" -->
+                     - 在组件接收到新的props或者state时被调用
+                    <!-- .element: class="fragment" -->
+                    * componentWillUpdate
+                     - 在接收到新的props或者state改变时调用
+                    <!-- .element: class="fragment" -->
+                    * componentDidUpdate
+                     - 在接受新的props或者state改变后 组件完成更新后调用
+                    <!-- .element: class="fragment" -->
+                    * componentUnmount
+                     - 从DOM移除时被调用
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+        </section>
+
+        <!-- 组件 -->
+        <section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 组件
+
+                    * 直接编写javascript函数
+                    <!-- .element: class="fragment" -->
+
+                    * 使用ES6的class
+                     - 使用类就允许我们使用其它特性，例如局部状态、生命周期钩子
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ```javascript
+                    const Welcome = () => {
+                       return (
+                            <div className="react">Hello World!</div>
+                        )
+                    }
+                    ReactDOM.render(
+                        <Welcome/>,
+                        document.getElementById('root')
+                    )
+                    ```
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    class Welcome extends React.Component {
+                        render () {
+                            return (
+                                <div className="react">Hello World!</div>
+                            )
+                        }
+                    }
+                    ReactDOM.render(
+                        <Welcome/>,
+                        document.getElementById('root')
+                    )
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 组件间如何传递参数？
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### 父组件传递到子组件
+                    <!-- .element: class="fragment" -->
+
+                    props
+                    <!-- .element: class="fragment" -->
+
+                    <div>父组件：
+                    ```javascript
+                    const search = const search = [{
+                        type: 'text',
+                        label: '渠道合作方',
+                        key: 'name'
+                    }, {
+                        type: 'select',
+                        label: '资产类型',
+                        key: 'productType',
+                        option: map.productType
+                    }];
+                    ReactDOM.render(
+                        <div>
+                            <Search search={search}></Search>
+                        </div>
+                    )
+                    ```
+                    </div>
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    子组件Search：
+                    ```javascript
+                        class Search extends React.Component{
+                        render () {
+                            const search = this.props.search
+                            return (
+                                <div>...todo something</div>
+                            )
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### 子组件传递到父组件
+                    <!-- .element: class="fragment" -->
+
+                    <div>父组件：
+                    ```javascript
+                    class App extends React.Component {
+                        handleSearch (newState) {
+                            this.setState({
+                                searchParams: newState
+                            }, () => {
+                                this.getList();
+                            });
+                        }
+                        render () {
+                            return (
+                            <div>
+                                <Search onChange={this.handleSearch.bind(this)}></Search>
+                            </div>
+                            )
+                        }
+                    }
+                    ```
+                    </div>
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    <div>子组件：
+                    ```javascript
+                    class Search extends React.Component {
+                        search () {
+                            const search = {...this.props.search};
+                            this.props.form.validateFields(async (err, value) => {
+                                if (!err) {
+                                    this.props.onChange(value);
+                                }
+                             });
+                        }
+                    }
+                    ```
+                    </div>
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+        </section>
+
+        <!-- state -->
+        <section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### state
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    state类似于Vue中的 *data*
+
+                    ```javascript
+                    class App extends React.Component {
+                        constructor (props) {
+                            super(props)
+                            this.state = {
+                                name: 'lijiahao'
+                            }
+                        }
+                        render () {
+                            return (
+                                <div>{this.state.name}</div>
+                            )
+                        }
+                    }
+                    ```
+
+                    ```javascript
+                    class App extends React.Component {
+                        constructor (props) {
+                            super(props)
+                            console.log(this.props)
+                        }
+                        render () {
+                            return (
+                                <div>{this.props.name}</div>
+                            )
+                        }
+                    }
+                    ```
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### 那么 *state* 与 *props* 的区别呢？
+                    <!-- .element: class="fragment" -->
+
+                    所有的React组件必须像纯函数那样使用它们的props。
+                    <!-- .element: class="fragment" -->
+
+                    会影响界面的展示，用户的输入的等请用state
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### 如何改变state呢？
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    this.state.name = 'dongchen';
+                    ```
+                    <!-- .element: class="fragment" -->
+
+                    WRONG
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    this.setState({
+                        name: 'dongchen'
+                    })
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ### 状态的更新可能是异步的
+
+                    ```javascript
+                    this.setState((prevState, props) => ({
+                        counter: prevState.counter + props.increment
+                    }));
+                    ```
+                    <!-- .element: class="fragment" -->
+
+
+                    ```javascript
+                    handleSearch (newState) {
+                        this.setState({
+                            searchParams: newState
+                        }, () => {
+                            this.getList();
+                        });
+                    }
+                    ```
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    async handleSearch (newState) {
+                        await this.setState({
+                            searchParams: newState
+                        });
+                        this.getList()
+                    }
+                    ```
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    handleSearch (newState) {
+                        this.setState(() => ({
+                            searchParams: newState
+                        }));
+                        setTimeout(() => {
+                            this.getList()
+                        }, 0)
+                    }
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+        </section>
+
+        <!-- 事件处理 -->
+
+        <section style="text-align: left;">
+            <h1>THE END</h1>
+
+            <h5>李家豪</h5>
+            <!--<small>-->
+            <!--</small>-->
+        </section>
+    </div>
+</div>
+
+<pre style="display:none"><code> force highlight.js work </code></pre>
+
+<script src="lib/js/head.min.js"></script>
+<script src="js/reveal.js"></script>
+
+<script>
+
+    // Full list of configuration options available at:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        transition: 'slide', // none/fade/slide/convex/concave/zoom
+
+        // Optional reveal.js plugins
+        dependencies: [
+            {
+                src: 'lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: 'plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: 'plugin/highlight/highlight.js', condition: function () {
+                return !!document.querySelector('pre code');
+            }, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {src: 'plugin/zoom-js/zoom.js', async: true},
+            {src: 'plugin/notes/notes.js', async: true}
+        ]
+    });
+
+</script>
+
+<script type="text/javascript">
+    function codeEditor () {
+        var nodes = document.querySelectorAll('code');
+        for (var i = 0; i < nodes.length; i++) {
+            nodes[i].setAttribute('contenteditable', '');
+        }
+        console.log('code editable now.');
+    }
+
+    window.codeEditor = codeEditor;
+
+    document.addEventListener('DOMContentLoaded', function () {
+        setTimeout(function () {
+            codeEditor();
+        }, 1000);
+    });
+</script>
+</body>
+</html>
