@@ -37,7 +37,7 @@
     <style lang="css" type="text/css">
         .App-logo {
             animation: App-logo-spin infinite 20s linear;
-            height: 160px;
+            height: 400px;
         }
     </style>
 
@@ -80,13 +80,18 @@
                 基于 React + Redux + React-router + Ant-design 的后台系统
 
                 * React
-                - react 核心库
-                - react-dom 提供DOM相关的功能
+                 - react 核心库
+                 - react-dom 提供DOM相关的功能
                 * Redux
-
+                 - redux
+                 - react-redux
+                 - redux-thunk
+                 - redux-promise
                 * React-router
-
-                * Ant-design
+                 - react-router-dom
+                * create-react-app
+                * Antd
+                * dva-cli
             </script>
         </section>
 
@@ -95,7 +100,9 @@
                 * 渲染（jsx）
                 * 生命周期
                 * 组件
-                - 组件间的值传递(props)
+                 - 父组件传递到子组件（props）
+                 - 子组件传递到父组件（回调函数）
+                 - 同级组件件如何传递？
                 * state
                 * 事件处理
                 * 条件渲染
@@ -107,34 +114,56 @@
             ## 渲染（jsx）
         </section>
 
-        <section data-markdown>
-            <script type="text/template">
-                ## what is JSX?
+        <section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## what is JSX?
 
-                <div>`jsx` 是 `javascript` 的一种扩展语法，也可以说是 `javascript` 的语法糖</div>
-                <!-- .element: class="fragment" -->
+                    <div>`jsx` 是 `javascript` 的一种扩展语法，也可以说是 `javascript` 的语法糖</div>
+                    <!-- .element: class="fragment" -->
 
-                <div>HTML不使用引号直接和javascript混写</div>
-                <!-- .element: class="fragment" -->
+                    <div>React.createElement(component, props, ...children)</div>
+                    <!-- .element: class="fragment" -->
 
-                <div>ReactDOM.render()</div>
-                <!-- .element: class="fragment" -->
+                    <div>HTML不使用引号直接和javascript混写</div>
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## react jsx组件首字母大写
+                    <!-- .element: class="fragment" -->
 
-                ```javascript
-                const list = ['Alice', 'Emily', 'Kate']
-                ReactDOM.render(
-                <div>
-                    {list.map((name, index) => {
-                    return (
-                    <div key={index}>Hello, {name}!</div>
+
+                    ```javascript
+                    class MyfirstComponent extends React.Component {
+
+                    }
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 渲染 => ReactDOM.render()
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    const list = ['Alice', 'Emily', 'Kate']
+                    ReactDOM.render(
+                        <div ref="wrapper">
+                            {list.map((name, index) => {
+                            return (
+                            <div key={index}>Hello, {name}!</div>
+                            )
+                            })}
+                        </div>,
+                        document.getElementById('root')
                     )
-                    })}
-                </div>,
-                document.getElementById('root')
-                )
-                ```
-                <!-- .element: class="fragment" -->
-            </script>
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
         </section>
 
         <!-- 生命周期 -->
@@ -193,6 +222,9 @@
                     * 使用ES6的class
                     <!-- .element: class="fragment" -->
 
+                    * React.createClass（弃用）=> create-react-class
+                    <!-- .element: class="fragment" -->
+
                     使用类就允许我们使用其它特性，例如局部状态、生命周期钩子
                     <!-- .element: class="fragment" -->
                 </script>
@@ -201,28 +233,28 @@
                 <script type="text/template">
                     ```javascript
                     const Welcome = () => {
-                    return (
-                    <div className="react">Hello World!</div>
-                    )
+                        return (
+                            <div className="react">Hello World!</div>
+                        )
                     }
                     ReactDOM.render(
-                    <Welcome/>,
-                    document.getElementById('root')
+                        <Welcome/>,
+                        document.getElementById('root')
                     )
                     ```
                     <!-- .element: class="fragment" -->
 
                     ```javascript
                     class Welcome extends React.Component {
-                    render () {
-                    return (
-                    <div className="react">Hello World!</div>
-                    )
-                    }
+                        render () {
+                            return (
+                                <div className="react">Hello World!</div>
+                            )
+                        }
                     }
                     ReactDOM.render(
-                    <Welcome/>,
-                    document.getElementById('root')
+                        <Welcome/>,
+                        document.getElementById('root')
                     )
                     ```
                     <!-- .element: class="fragment" -->
@@ -241,41 +273,43 @@
                     props
                     <!-- .element: class="fragment" -->
 
-                    <div>父组件：
-                        ```javascript
-                        const search = const search = [{
+                    父组件
+                    <!-- .element: class="fragment" -->
+                    ```javascript
+                    const search = [{
                         type: 'text',
                         label: '渠道合作方',
                         key: 'name'
-                        }, {
+                    }, {
                         type: 'select',
                         label: '资产类型',
                         key: 'productType',
                         option: map.productType
-                        }];
-                        ReactDOM.render(
+                    }];
+                    ReactDOM.render(
                         <div>
                             <Search search={search}></Search>
                         </div>
-                        )
-                        ```
-                    </div>
+                    )
+                    ```
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
             <section data-markdown>
                 <script type="text/template">
-                    子组件Search：
+                    子组件Search
+                    <!-- .element: class="fragment" -->
                     ```javascript
                     class Search extends React.Component{
-                    render () {
-                    const search = this.props.search
-                    return (
-                    <div>...todo something</div>
-                    )
-                    }
+                        render () {
+                            const search = this.props.search
+                            return (
+                                <div>...todo something</div>
+                            )
+                        }
                     }
                     ```
+                    <!-- .element: class="fragment" -->
                 </script>
             </section>
             <section data-markdown>
@@ -283,45 +317,47 @@
                     ### 子组件传递到父组件
                     <!-- .element: class="fragment" -->
 
-                    <div>父组件：
-                        ```javascript
-                        class App extends React.Component {
+                    父组件
+                    <!-- .element: class="fragment" -->
+                    ```javascript
+
+                    class App extends React.Component {
                         handleSearch (newState) {
-                        this.setState({
-                        searchParams: newState
-                        }, () => {
-                        this.getList();
-                        });
+                            this.setState({
+                                searchParams: newState
+                            }, () => {
+                                this.getList();
+                            });
                         }
                         render () {
-                        return (
-                        <div>
-                            <Search onChange={this.handleSearch.bind(this);}></Search>
-                        </div>
-                        )
+                            return (
+                                <div>
+                                    <Search onChange={this.handleSearch.bind(this)}></Search>
+                                </div>
+                            )
                         }
-                        }
-                        ```
-                    </div>
+                    }
+
+                    ```
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
             <section data-markdown>
                 <script type="text/template">
-                    <div>子组件：
-                        ```javascript
-                        class Search extends React.Component {
+                    子组件
+                    <!-- .element: class="fragment" -->
+                    ```javascript
+                    class Search extends React.Component {
                         search () {
-                        const search = {...this.props.search};
-                        this.props.form.validateFields(async (err, value) => {
-                        if (!err) {
-                        this.props.onChange(value);
+                            const search = {...this.props.search};
+                            this.props.form.validateFields(async (err, value) => {
+                                if (!err) {
+                                    this.props.onChange(value);
+                                }
+                            });
                         }
-                        });
-                        }
-                        }
-                        ```
-                    </div>
+                    }
+                    ```
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
@@ -340,31 +376,31 @@
 
                     ```javascript
                     class App extends React.Component {
-                    constructor (props) {
-                    super(props)
-                    this.state = {
-                    name: 'lijiahao'
-                    }
-                    }
-                    render () {
-                    return (
-                    <div>{this.state.name}</div>
-                    )
-                    }
+                        constructor (props) {
+                            super(props)
+                            this.state = {
+                                name: 'lijiahao'
+                            }
+                        }
+                        render () {
+                            return (
+                                <div>{this.state.name}</div>
+                            )
+                        }
                     }
                     ```
 
                     ```javascript
                     class App extends React.Component {
-                    constructor (props) {
-                    super(props)
-                    console.log(this.props)
-                    }
-                    render () {
-                    return (
-                    <div>{this.props.name}</div>
-                    )
-                    }
+                        constructor (props) {
+                            super(props)
+                            console.log(this.props)
+                        }
+                        render () {
+                            return (
+                                <div>{this.props.name}</div>
+                            )
+                        }
                     }
                     ```
                 </script>
@@ -387,7 +423,7 @@
                     <!-- .element: class="fragment" -->
 
                     ```javascript
-                    this.state.name = 'dongchen';
+                    this.state.name = 'jiahaoli';
                     ```
                     <!-- .element: class="fragment" -->
 
@@ -396,7 +432,7 @@
 
                     ```javascript
                     this.setState({
-                    name: 'dongchen'
+                        name: 'jiahaoli'
                     })
                     ```
                     <!-- .element: class="fragment" -->
@@ -408,7 +444,7 @@
 
                     ```javascript
                     this.setState((prevState, props) => ({
-                    counter: prevState.counter + props.increment
+                        counter: prevState.counter + props.increment
                     }));
                     ```
                     <!-- .element: class="fragment" -->
@@ -416,33 +452,33 @@
 
                     ```javascript
                     handleSearch (newState) {
-                    this.setState({
-                    searchParams: newState
-                    }, () => {
-                    this.getList();
-                    });
+                        this.setState({
+                            searchParams: newState
+                        }, () => {
+                            this.getList();
+                        });
                     }
                     ```
                     <!-- .element: class="fragment" -->
 
                     ```javascript
                     async handleSearch (newState) {
-                    await this.setState({
-                    searchParams: newState
-                    });
-                    this.getList()
+                        await this.setState({
+                            searchParams: newState
+                        });
+                        this.getList()
                     }
                     ```
                     <!-- .element: class="fragment" -->
 
                     ```javascript
                     handleSearch (newState) {
-                    this.setState(() => ({
-                    searchParams: newState
-                    }));
-                    setTimeout(() => {
-                    this.getList()
-                    }, 0)
+                        this.setState(() => ({
+                            searchParams: newState
+                        }));
+                        setTimeout(() => {
+                            this.getList()
+                        }, 0)
                     }
                     ```
                     <!-- .element: class="fragment" -->
@@ -506,6 +542,8 @@
 
             <section data-markdown>
                 <script type="text/template">
+                    属性初始化器语法
+                    <!-- .element: class="fragment" -->
                     ```javascript
                     class App extends React.Component {
                         constructor (props) {
@@ -522,7 +560,12 @@
                     }
                     ```
                     <!-- .element: class="fragment" -->
-
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    箭头函数
+                    <!-- .element: class="fragment" -->
                     ```javascript
                     class App extends React.Component {
                         constructor (props) {
@@ -533,7 +576,7 @@
                         }
                         render {
                             return (
-                            <div onClick={(e) => this.handleClick(e)}></div>
+                                <div onClick={(e) => this.handleClick(e)}></div>
                             )
                         }
                     }
