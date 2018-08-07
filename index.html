@@ -150,11 +150,15 @@
 
                     ```javascript
                     const list = ['Alice', 'Emily', 'Kate']
+                    const styleObj = {
+                        background: '#fff',
+                        fontSize: '14px'
+                    }
                     ReactDOM.render(
                         <div ref="wrapper">
                             {list.map((name, index) => {
                             return (
-                            <div key={index}>Hello, {name}!</div>
+                            <div key={index} classNmae="test" style={styleObj}>Hello, {name}!</div>
                             )
                             })}
                         </div>,
