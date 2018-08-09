@@ -62,7 +62,7 @@
                         <path d="M520.5 78.1z"/>
                     </g>
                 </svg>
-                # react
+                # react@v16.3
 
                 <small>
                     <a href="javascript:;">by - 李家豪</a>
@@ -97,7 +97,7 @@
 
         <section data-markdown>
             <script type="text/template">
-                * 渲染（jsx）
+                * 渲染
                 * 生命周期
                 * 组件
                  - 父组件传递到子组件（props）
@@ -117,7 +117,7 @@
         <section>
             <section data-markdown>
                 <script type="text/template">
-                    ## what is JSX?
+                    ## what is jsx?
 
                     <div>`jsx` 是 `javascript` 的一种扩展语法，也可以说是 `javascript` 的语法糖</div>
                     <!-- .element: class="fragment" -->
@@ -130,22 +130,8 @@
                 </script>
             </section>
             <section data-markdown>
-                <script type="text/template">
-                    ## react jsx组件首字母大写
-                    <!-- .element: class="fragment" -->
-
-
-                    ```javascript
-                    class MyfirstComponent extends React.Component {
-
-                    }
-                    ```
-                    <!-- .element: class="fragment" -->
-                </script>
-            </section>
-            <section data-markdown>
-                <script type="text/template">
-                    ## 渲染 => ReactDOM.render()
+                <script  type="text/template">
+                    渲染 => ReactDOM.render()
                     <!-- .element: class="fragment" -->
 
                     ```javascript
@@ -158,13 +144,16 @@
                         <div ref="wrapper">
                             {list.map((name, index) => {
                             return (
-                            <div key={index} classNmae="test" style={styleObj}>Hello, {name}!</div>
+                                <div key={index} classNmae="test" style={styleObj}>Hello, {name}!</div>
                             )
                             })}
                         </div>,
                         document.getElementById('root')
                     )
                     ```
+                    <!-- .element: class="fragment" -->
+
+                    jsx语法更倾向于js，在js中class是保留字，所以定义样式名称使用className
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
@@ -180,37 +169,40 @@
                     ## 生命周期
 
                     * componentWillMount
-                    - 插入真实DOM之前
+                     - 插入真实DOM之前
                     <!-- .element: class="fragment" -->
 
                     * componentDidMount
-                    - 已经生成了真实的DOM
+                     - 已经生成了真实的DOM
                     <!-- .element: class="fragment" -->
 
                     * componentWillReceiveProps
-                    - 接收到一个新的 prop (更新后)时被调用
+                     - 接收到一个新的 prop (更新后)时被调用
                     <!-- .element: class="fragment" -->
-                    - 这个方法在初始化render时不会被调用
+                     - 这个方法在初始化render时不会被调用
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
             <section data-markdown>
                 <script type="text/template">
                     * shouldComponentUpdate
-                    - 返回一个布尔值
+                     - 返回一个布尔值
                     <!-- .element: class="fragment" -->
-                    - 在组件接收到新的props或者state时被调用
+                     - 在组件接收到新的props或者state时被调用
                     <!-- .element: class="fragment" -->
                     * componentWillUpdate
-                    - 在接收到新的props或者state改变时调用
+                     - 在接收到新的props或者state改变时调用
                     <!-- .element: class="fragment" -->
                     * componentDidUpdate
-                    - 在接受新的props或者state改变后 组件完成更新后调用
+                     - 在接受新的props或者state改变后 组件完成更新后调用
                     <!-- .element: class="fragment" -->
                     * componentUnmount
-                    - 从DOM移除时被调用
+                     - 从DOM移除时被调用
                     <!-- .element: class="fragment" -->
                 </script>
+            </section>
+            <section data-markdown data-background="attach/lifecycle.jpg">
+
             </section>
         </section>
 
@@ -235,6 +227,18 @@
             </section>
             <section data-markdown>
                 <script type="text/template">
+                    ## react jsx组件首字母大写
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    class MyFirstComponent extends React.Component {
+                    }
+                    ```
+                    <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
                     ```javascript
                     const Welcome = () => {
                         return (
@@ -250,6 +254,11 @@
 
                     ```javascript
                     class Welcome extends React.Component {
+                        constructor(props) {
+                            super(props);
+                            this.state = {}
+                            console.log(this.props);
+                        }
                         render () {
                             return (
                                 <div className="react">Hello World!</div>
@@ -262,6 +271,31 @@
                     )
                     ```
                     <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown="">
+                <script type="text/template">
+                ```js
+                // 调用父类的constructor(props)并得到this对象，并且this.props中的this指向子类Welcome
+                super(props);
+                ```
+                <!-- .element: class="fragment" -->
+
+
+                ```js
+                /**
+                * Base class helpers for the updating state of a component.
+                */
+                function Component(props, context, updater) {
+                    this.props = props;
+                    this.context = context;
+                    this.refs = emptyObject;
+                    // We initialize the default updater but the real one gets injected by the
+                    // renderer.
+                    this.updater = updater || ReactNoopUpdateQueue;
+                }
+                ```
+                <!-- .element: class="fragment" -->
                 </script>
             </section>
             <section data-markdown>
@@ -444,8 +478,12 @@
             </section>
             <section data-markdown>
                 <script type="text/template">
-                    ### 状态的更新可能是异步的
+                    ### 状态的更新可能是"异步"的
 
+                    在setState的时候内部会创建一个updateQueue通过firstUpdate,lastUpdate,lastUpdate.next去维护一个队列在最终的performWork中，相同的key会被覆盖，只会对最后一次的setState.
+                    <!-- .element: class="fragment" -->
+
+                    ## 1
                     ```javascript
                     this.setState((prevState, props) => ({
                         counter: prevState.counter + props.increment
@@ -453,7 +491,7 @@
                     ```
                     <!-- .element: class="fragment" -->
 
-
+                    ## 2
                     ```javascript
                     handleSearch (newState) {
                         this.setState({
@@ -464,7 +502,11 @@
                     }
                     ```
                     <!-- .element: class="fragment" -->
-
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 3
                     ```javascript
                     async handleSearch (newState) {
                         await this.setState({
@@ -475,6 +517,7 @@
                     ```
                     <!-- .element: class="fragment" -->
 
+                    ## 4
                     ```javascript
                     handleSearch (newState) {
                         this.setState(() => ({
@@ -497,7 +540,28 @@
             </section>
             <section data-markdown>
                 <script type="text/template">
-                    React事件绑定属性的命名采用驼峰式的写法，而不是小写
+                    React事件绑定属性的命名采用驼峰式的写法，而不是小写。这虽然和HTML的事件看上去非常的相像，但是这是React的合成事件
+                    <!-- .element: class="fragment" -->
+
+                    ```javascript
+                    function shouldPreventMouseEvent(name, type, props) {
+                        switch (name) {
+                            case 'onClick':
+                            case 'onClickCapture':
+                            case 'onDoubleClick':
+                            case 'onDoubleClickCapture':
+                            case 'onMouseDown':
+                            case 'onMouseDownCapture':
+                            case 'onMouseMove':
+                            case 'onMouseMoveCapture':
+                            case 'onMouseUp':
+                            case 'onMouseUpCapture':
+                                return !!(props.disabled && isInteractive(type));
+                            default:
+                                return false;
+                        }
+                    }
+                    ```
                     <!-- .element: class="fragment" -->
 
                     ```javascript
