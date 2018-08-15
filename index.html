@@ -233,9 +233,13 @@
                     <!-- .element: class="fragment" -->
 
                     ```javascript
-                    class MyFirstComponent extends React.Component {
-                    }
+                    class MyFirstComponent extends React.Component {}
+
+                    class MyFirstComponent extends React.PurComponent {}
                     ```
+                    <!-- .element: class="fragment" -->
+
+                    `PurComponent`@v15.3 => 改变了生命周期方法 `shouldComponentUpdate` ,并且会自动"浅"检查组件是否需要重新渲染。
                     <!-- .element: class="fragment" -->
                 </script>
             </section>
@@ -399,6 +403,37 @@
                     }
                     ```
                     <!-- .element: class="fragment" -->
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+                    ## 特殊的props.children（插槽） => vue的slot
+
+                    ```js
+                    class Button extends Component {
+                        constructor (props) {
+                            super(props)
+                        }
+                        render () {
+                            return (
+                                <div>{this.props.children}</div>
+                            )
+                        }
+                    }
+
+                    ReactDOM.render(
+                        <Button>
+                            <Icon name="dollars"/>
+                            <span>BUY NOW</span>
+                        </Button>,
+                    document.getElementById('root')
+                    );
+                    ```
+                </script>
+            </section>
+            <section data-markdown>
+                <script type="text/template">
+
                 </script>
             </section>
         </section>
@@ -740,6 +775,11 @@
             <h5>李家豪</h5>
             <!--<small>-->
             <!--</small>-->
+        </section>
+        <section data-markdown>
+            <script type="text/template">
+             [PureComponent](https://www.zcfy.cc/article/why-and-how-to-use-purecomponent-in-react-js-60devs-2344.html)
+            </script>
         </section>
     </div>
 </div>
