@@ -87,10 +87,11 @@
                  - react-redux
                  - redux-thunk
                  - redux-promise
+                 - redux-saga
                 * React-router
-                 - react-router-dom
+                 - react-router-dom@v4
                 * create-react-app
-                * Antd
+                * antd
                 * dva-cli
             </script>
         </section>
@@ -142,9 +143,9 @@
                     ReactDOM.render(
                         <div ref="wrapper">
                             {list.map((name, index) => {
-                            return (
-                                <div key={index} classNmae="test" style={styleObj}>Hello, {name}!</div>
-                            )
+                                return (
+                                    <div key={index} className="test" style={styleObj}>Hello, {name}!</div>
+                                )
                             })}
                         </div>,
                         document.getElementById('root')
